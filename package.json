@@ -1,7 +1,7 @@
 {
-  "name": "material-ui-example",
+  "name": "social-search-hybrid-client",
   "version": "0.0.1",
-  "description": "Sample project that uses material-ui",
+  "description": "Hybrid mobile app that is a part of the Social Search stack.",
   "browserify": {
     "transform": [
       [
@@ -26,7 +26,8 @@
     "require-dir": "^0.1.0",
     "underscore": "^1.7.0",
     "vinyl-source-stream": "^1.0.0",
-    "watchify": "^2.2.1"
+    "watchify": "^2.2.1",
+    "cordova-lib": "^0.21.6"
   },
   "dependencies": {
     "material-ui": "^0.4.1",
