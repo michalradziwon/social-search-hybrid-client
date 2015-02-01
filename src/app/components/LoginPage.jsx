@@ -1,8 +1,12 @@
 var React = require('react');
+var Router = require('react-router');
+var Reflux = require('reflux');
 var mui = require('material-ui');
 var RaisedButton = mui.RaisedButton;
 var Input = mui.Input;
-var BackendClient = require('../remote/BackendClient');
+
+var LoginActions = require('./LoginActions');
+var LoginStore = require('./LoginStore');
 
 var {
   Link
@@ -10,6 +14,14 @@ var {
 
 
 var Login = React.createClass({
+  mixins: [
+    Router.Navigation,
+    Reflux.listenTo(LoginStore, "onLoginStoreChanged")
+  ],
+  componentWillMount : function(){
+    console.log("componentWillMount", arguments);
+  },
+
   getInitialState: function () {
     return {};
   },
@@ -31,16 +43,19 @@ var Login = React.createClass({
   login: function () {
     var login = this.refs.login.getValue() || "";
     var pass = this.refs.password.getValue() || "";
-    var self = this;
-    BackendClient.authenticate(login, pass, function (resp) {
-      self.setState({"authFailed": false});
-      alert("WELCOME");
-    });
-
-
-    //TODO temporary
-    this.setState({"authFailed": true});
-
+    LoginActions.login(login, pass);
+  },
+  onLoginStoreChanged: function (event) {
+    if (event.authenticated) {
+      console.log("SUCC");
+      this.setState({"authFailed": false});
+      this.transitionTo('/home');
+    } else {
+      this.setState({"authFailed": true});
+      console.log("ERROR");
+    }
+  },
+  onLoginSuccessfully: function () {
   }
 
 });

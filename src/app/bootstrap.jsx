@@ -8,9 +8,9 @@
 
   // Components
   //
-  var App = require('./components/app.jsx');
-  var Login = require('./components/login.jsx');
-  var Home = require('./components/home.jsx');
+  var App = require('./components/App.jsx');
+  var Login = require('./components/LoginPage.jsx');
+  var Home = require('./components/HomePage.jsx');
 
 
   //Needed for onTouchTap

@@ -1,5 +1,7 @@
 var configuration = require('../configuration').backendClient();
 var agent = require('superagent');
+var Q = require('q');
+
 
 /**
  * Just some basic HTTP GET request as a PoC of integration with superagent.
@@ -15,17 +17,19 @@ module.exports.test = function (ok) {
   });
 };
 
-module.exports.authenticate = function (_login, _password, _okCallback) {
-  return agent
+module.exports.authenticate = function (_login, _password) {
+  var defer = Q.defer();
+  agent
     .post(configuration.host + "/api/v1/authenticate")
-    //.set("Content-Type", "application/json")
-    .send({login: _login, password: _password})
+    .set("Accept", "application/json")
+    .send({username: _login, password: _password})
     .end(function (res) {
-      console.log(res);
+      console.log("resp:"+JSON.stringify(res));
       if (res.ok) {
-        _okCallback(res.body);
+        defer.resolve(res.body);
       } else {
-        // ... TODO
+        defer.reject(res.body);
       }
     });
+  return defer.promise;
 };
