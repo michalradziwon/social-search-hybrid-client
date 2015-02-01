@@ -4,7 +4,12 @@ var RaisedButton = mui.RaisedButton;
 var Input = mui.Input;
 var BackendClient = require('../remote/BackendClient');
 
-var Main = React.createClass({
+var {
+  Link
+  } = require('react-router');
+
+
+var Login = React.createClass({
   getInitialState: function () {
     return {};
   },
@@ -16,7 +21,9 @@ var Main = React.createClass({
         <Input ref="login" type="text" name="login" placeholder="Login" />
         <Input ref="password" type="password" name="password" placeholder="Password" />
         <RaisedButton label="Login" primary={true} onTouchTap={this.login} />
-        {this.state /*FIXME why this.state is undefined during the 1st render*/ && this.state.authFailed ? <p className="warning">Authentication failed.</p> : null}
+  {this.state /*FIXME why this.state is undefined during the 1st render*/ && this.state.authFailed ? <p className="warning">Authentication failed.</p> : null}
+
+        <Link to ="/home"> HOME TMP FIXME </Link>
       </div>
     );
   },
@@ -38,4 +45,4 @@ var Main = React.createClass({
 
 });
 
-module.exports = Main;
+module.exports = Login;
