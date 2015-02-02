@@ -1,10 +1,8 @@
 var Reflux = require('reflux');
-var React = require("react/addons");
 var LoginActions = require('./LoginActions');
 
 var LoginStore = Reflux.createStore({
   listenables: LoginActions,
-
   authenticated: false,
   lastError: null,
 

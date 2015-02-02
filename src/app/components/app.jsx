@@ -1,12 +1,17 @@
 var React = require('react');
-var Router = require('react-router');
-
+var ReactRouter = require('react-router');
+var Security = require('../Security.js');
 var {
   RouteHandler
-  } = Router;
+  } = ReactRouter;
 
 
 var App = React.createClass({
+  mixins: [ReactRouter.State],
+  componentWillUpdate: function () {
+    console.log("will update");
+    Security.securityCheck(this.getPathname());
+  },
   render: function () {
     return (
       <div className="App">

@@ -1,5 +1,4 @@
 var React = require('react');
-var Router = require('react-router');
 var Reflux = require('reflux');
 var mui = require('material-ui');
 var RaisedButton = mui.RaisedButton;
@@ -8,22 +7,13 @@ var Input = mui.Input;
 var LoginActions = require('./LoginActions');
 var LoginStore = require('./LoginStore');
 
-var {
-  Link
-  } = require('react-router');
-
 
 var Login = React.createClass({
   mixins: [
-    Router.Navigation,
-    Reflux.listenTo(LoginStore, "onLoginStoreChanged")
+    Reflux.ListenerMixin
   ],
-  componentWillMount : function(){
-    console.log("componentWillMount", arguments);
-  },
-
-  getInitialState: function () {
-    return {};
+  componentDidMount:function(){
+    this.listenTo(LoginStore, this.onLoginStoreChanged);
   },
   render: function () {
 
@@ -34,8 +24,6 @@ var Login = React.createClass({
         <Input ref="password" type="password" name="password" placeholder="Password" />
         <RaisedButton label="Login" primary={true} onTouchTap={this.login} />
   {this.state /*FIXME why this.state is undefined during the 1st render*/ && this.state.authFailed ? <p className="warning">Authentication failed.</p> : null}
-
-        <Link to ="/home"> HOME TMP FIXME </Link>
       </div>
     );
   },
@@ -48,8 +36,7 @@ var Login = React.createClass({
   onLoginStoreChanged: function (event) {
     if (event.authenticated) {
       console.log("SUCC");
-      this.setState({"authFailed": false});
-      this.transitionTo('/home');
+      //this.setState({"authFailed": false});
     } else {
       this.setState({"authFailed": true});
       console.log("ERROR");
