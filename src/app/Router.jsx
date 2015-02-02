@@ -20,10 +20,11 @@ module.exports.run = function (target) {
     var newLocation = getRootUrl(document.location.href);
     console.log("changing location from " + document.location.href + " to " + newLocation);
     document.location.href = newLocation;
+  }else{
+    router = ReactRouter.run(routes, function (Handler) {
+      React.render(<Handler/>, target);
+    });
   }
-  router = ReactRouter.run(routes, function (Handler) {
-    React.render(<Handler/>, target);
-  });
 };
 
 module.exports.transitionTo = function (to, params, query) {
