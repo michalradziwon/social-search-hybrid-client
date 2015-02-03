@@ -16,7 +16,7 @@ module.exports.run = function (target) {
     return matches && (matches[1] + "/");
   };
   console.log("Current location is " + document.location.href);
-  if (document.location.href != getRootUrl(document.location.href)) {
+  if (document.location.href != getRootUrl(document.location.href) && document.location.href.indexOf("file://") != 0) {
     var newLocation = getRootUrl(document.location.href);
     console.log("changing location from " + document.location.href + " to " + newLocation);
     document.location.href = newLocation;

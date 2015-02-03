@@ -26,7 +26,8 @@
     "require-dir": "^0.1.0",
     "underscore": "^1.7.0",
     "vinyl-source-stream": "^1.0.0",
-    "watchify": "^2.2.1"
+    "watchify": "^2.2.1",
+    "run-sequence": "^1.0.2"
   },
   "dependencies": {
     "material-ui": "^0.6.1",
