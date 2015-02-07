@@ -1,27 +1,23 @@
+var agent = require('superagent');
 var Q = require('q');
 
 module.exports.fetchBeersByFlavourProfile = function (flavourProfileList) {
-  console.log("fetching beers for flavours " + flavourProfileList);
 
-  // TODO STUB impl.
-  var Q = require('q');
-  return Q.delay(1000).then(function () {
-    return [{
-      name: "Tyskie_" + flavourProfileList[0],
-      imageUrl: "http://todo/tyskie.jpg",
-      flavourProfile: "spicy"
-    },
-      {
-        name: "Lech",
-        imageUrl: "http://todo/lech.jpg",
-        flavourProfile: "sour"
+  var defer = Q.defer();
+  agent
+    .post("https://safe-depths-9845.herokuapp.com/api/v1/beersFlavorProfiles")
+    .set("Accept", "application/json")
+    .send({
+      flavorProfiles: flavourProfileList
+    })
+    .end(function (res) {
+      console.log("resp:"+JSON.stringify(res));
+      if (res.ok) {
+        defer.resolve(res.body.beers);
+      } else {
+        defer.reject(res.body);
       }
-      ,
-      {
-        name: "Okocim",
-        imageUrl: "http://todo/lech.jpg",
-        flavourProfile: "sour"
-      }];
-  });
+    });
+  return defer.promise;
 };
 
