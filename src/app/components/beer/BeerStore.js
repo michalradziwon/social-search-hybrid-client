@@ -7,7 +7,9 @@ var Set = Immutable.Set;
 var BeerStore = Reflux.createStore({
   listenables: BeerActions,
   state: {
-    flavourTypes: new Set([1, 2])
+    flavourTypes: new Set(),
+    mainIngredients: new Set(),
+    additionalIngredients: new Set()
   },
   onPairingTypeChanged: function (newPairingType) {
     this.state.pairingType = newPairingType;
@@ -20,6 +22,14 @@ var BeerStore = Reflux.createStore({
   },
   onFlavourTypeToggled: function (flavourType) {
     this.state.flavourTypes = (this.state.flavourTypes.has(flavourType)) ? this.state.flavourTypes.remove(flavourType) : this.state.flavourTypes.add(flavourType);
+    this.notifyListeners();
+  },
+  onMainIngredientToggled: function (mainIngredient) {
+    this.state.mainIngredients = (this.state.mainIngredients.has(mainIngredient)) ? this.state.mainIngredients.remove(mainIngredient) : this.state.mainIngredients.add(mainIngredient);
+    this.notifyListeners();
+  },
+  onAdditionalIngredientToggled: function (additionalIngredient) {
+    this.state.additionalIngredients = (this.state.additionalIngredients.has(additionalIngredient)) ? this.state.additionalIngredients.remove(additionalIngredient) : this.state.additionalIngredients.add(additionalIngredient);
     this.notifyListeners();
   },
   notifyListeners: function () {
