@@ -32,7 +32,7 @@ var MainPage = React.createClass({
           {this.state.pairingType == "ALL" ? <RaisedButton label="ALL" primary={true} /> : <FlatButton label="ALL" primary={true} onTouchTap={this.onTouch("ALL")}/> }
           {this.state.pairingType == "Contrast" ? <RaisedButton label="Contrast" primary={true} /> : <FlatButton label="Contrast" primary={true} onTouchTap={this.onTouch("Contrast")}/> }
         </div>
-        <IconButton icon="image-navigate-next" onTouchTap={this.onTouchNextPage}/>
+        <IconButton icon="image-navigate-next" onTouchTap={this.onTouchNextPage} disabled ={!this.state.pairingType}/>
       </div>
     );
   },
@@ -42,7 +42,9 @@ var MainPage = React.createClass({
     }.bind(this);
   },
   onTouchNextPage: function () {
-    Router.transitionTo("/second"); // TODO later - move to action layer...
+    if(this.state.pairingType){
+      Router.transitionTo("/second"); // TODO later - move to action layer...
+    }
   },
   onBeerStoreChanged(newState){
     this.setState(newState);
