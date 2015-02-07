@@ -4,6 +4,7 @@ var mui = require('material-ui');
 
 var Router = require('../../Router.jsx');
 var BeerStore = require('./BeerStore');
+var FinalChoiceStore = require('./FinalChoiceStore');
 var BeerActions = require('./BeerActions');
 
 
@@ -26,6 +27,7 @@ var SecondPage = React.createClass({
   },
   componentDidMount: function () {
     this.listenTo(BeerStore, this.onBeerStoreChanged);
+    this.listenTo(FinalChoiceStore, this.onFinalChoiceStoreChanged);
     BeerActions.notifyAll();
   },
   render: function () {
@@ -68,6 +70,9 @@ var SecondPage = React.createClass({
   },
   onBeerStoreChanged(newState) {
     this.setState(newState);
+  },
+  onFinalChoiceStoreChanged(newState) {
+    console.log("SP.onFinalChoiceStoreChanged", newState);
   },
   onFlavourTypeToggle: function (_selected) {
     return function () {
