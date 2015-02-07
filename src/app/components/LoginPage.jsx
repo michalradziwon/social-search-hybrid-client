@@ -36,13 +36,11 @@ var Login = React.createClass({
   onLoginStoreChanged: function (event) {
     if (event.authenticated) {
       console.log("SUCC");
-      //this.setState({"authFailed": false});
+      this.setState({"authFailed": false});
     } else {
       this.setState({"authFailed": true});
       console.log("ERROR");
     }
-  },
-  onLoginSuccessfully: function () {
   }
 
 });

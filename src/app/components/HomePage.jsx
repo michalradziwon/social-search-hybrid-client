@@ -6,8 +6,6 @@ var {
   } = mui;
 
 var Home = React.createClass({
-  componentDidMount: function(){
-  },
   render: function () {
     return (
       <div>

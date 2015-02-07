@@ -8,4 +8,9 @@
 
   // Run router! That will start the app!
   require('./Router.jsx').run(document.body);
+
+
+  document.addEventListener("deviceready",function(){
+    console.log("deviceReady!");
+  },false);
 })();
