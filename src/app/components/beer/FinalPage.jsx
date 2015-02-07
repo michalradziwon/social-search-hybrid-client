@@ -8,6 +8,10 @@ var {
   } = mui;
 var Router = require('../../Router.jsx');
 
+var Swipe = require("react-swipper");
+
+
+
 var FinalPage = React.createClass({
   mixins: [
     Reflux.ListenerMixin
@@ -22,8 +26,29 @@ var FinalPage = React.createClass({
   render: function () {
     return (
       <div>
-      Final Page ... TODO
         <IconButton icon="image-navigate-before" onTouchTap={this.goToPrevious}/>
+        <Swipe className="swipper">
+          <div>
+            <b>Dish 1</b>
+          </div>
+          <div>
+            <b>Dish 2</b>
+          </div>
+          <div>
+            <b>Dish 3</b>
+          </div>
+        </Swipe>
+        <Swipe className="swipper">
+          <div>
+            <b>Tyskie</b>
+          </div>
+          <div>
+            <b>Stella</b>
+          </div>
+          <div>
+            <b>Lech</b>
+          </div>
+        </Swipe>
       </div>
     );
   },
