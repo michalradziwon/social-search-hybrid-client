@@ -2,7 +2,8 @@ var Reflux = require('reflux');
 
 var BeerActions = Reflux.createActions([
   'pairingTypeChanged',
-  'notifyAll'
+  'notifyAll',
+  'flavourTypeToggled'
 ]);
 
 
