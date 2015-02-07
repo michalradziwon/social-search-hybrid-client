@@ -1,4 +1,4 @@
-var configuration = require('../configuration').backendClient();
+var configuration = require('../Configuration').backendClient();
 var agent = require('superagent');
 var Q = require('q');
 
