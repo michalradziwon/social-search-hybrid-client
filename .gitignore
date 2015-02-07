@@ -1,3 +1,5 @@
 build
 .idea
 node_modules
+cordova
+src/www/beer.jpg

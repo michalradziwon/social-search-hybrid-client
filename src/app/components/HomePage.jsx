@@ -21,7 +21,7 @@ var Home = React.createClass({
               </p>
             </div>
           </Tab>
-          <Tab label="Swipper" >
+          <Tab label="React Swipper" >
             <Swipper/>
           </Tab>
         </Tabs>
