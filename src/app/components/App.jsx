@@ -10,7 +10,7 @@ var App = React.createClass({
   mixins: [ReactRouter.State],
   componentWillUpdate: function () {
     console.log("will update");
-    Security.securityCheck(this.getPathname());
+    //Security.securityCheck(this.getPathname()); // temporary disabled for the hackhaton purposes
   },
   render: function () {
     return (
