@@ -11,7 +11,7 @@ module.exports.fetchBeersByFlavourProfile = function (flavourProfileList) {
       flavorProfiles: flavourProfileList
     })
     .end(function (res) {
-      console.log("resp:"+JSON.stringify(res));
+      console.log("resp:",res);
       if (res.ok) {
         defer.resolve(res.body.beers);
       } else {
