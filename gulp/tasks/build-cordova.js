@@ -18,8 +18,8 @@ gulp.task('deploy-cordova', function (done) {
 
 gulp.task('build-cordova', function (done) {
   runSequence(
-    'rm-cordova', 'cordova-create-project', 'cordova-add-android', 'build', 'populate-cordova-www',
-    done);
+    'rm-cordova', 'cordova-create-project', 'cordova-add-android', 'build', 'populate-cordova-www', 'cordova-plugins-install', 'cordova-build'
+    ,done);
 });
 
 
@@ -60,6 +60,17 @@ gulp.task('populate-cordova-www', function (done) {
   });
 });
 
+
+// a little confusing... TODO rename it later
+gulp.task('cordova-build', function (done) {
+  exec('cordova build', {cwd: cordovaDir}, function (err, stdout, stderr) {
+    console.log(stdout);
+    console.log(stderr);
+    done(err);
+  });
+});
+
+
 gulp.task('cordova-run', function (done) {
   exec('cordova run', {cwd: cordovaDir}, function (err, stdout, stderr) {
     console.log(stdout);
@@ -67,5 +78,45 @@ gulp.task('cordova-run', function (done) {
     done(err);
   });
 });
+
+
+
+// Cordova Plugins
+//
+gulp.task('cordova-plugins-install', function (done) {
+  runSequence(
+    //'cordova-plugins-iflyspeech',
+    'cordova-plugins-vibration',
+    'cordova-plugins-device-motion'
+    ,done);
+});
+
+
+
+gulp.task('cordova-plugins-iflyspeech', function (done) {
+  exec('cordova plugin add https://github.com/floatinghotpot/cordova-plugin-iflyspeech.git', {cwd: cordovaDir}, function (err, stdout, stderr) {
+    console.log(stdout);
+    console.log(stderr);
+    done(err);
+  });
+});
+
+gulp.task('cordova-plugins-vibration', function (done) {
+  exec('cordova plugin add org.apache.cordova.vibration', {cwd: cordovaDir}, function (err, stdout, stderr) {
+    console.log(stdout);
+    console.log(stderr);
+    done(err);
+  });
+});
+
+
+gulp.task('cordova-plugins-device-motion', function (done) {
+  exec('cordova plugin add org.apache.cordova.device-motion', {cwd: cordovaDir}, function (err, stdout, stderr) {
+    console.log(stdout);
+    console.log(stderr);
+    done(err);
+  });
+});
+
 
 
