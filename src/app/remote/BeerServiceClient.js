@@ -48,10 +48,16 @@ module.exports.fetchPairings = function (input) {
   return Q.delay(2000).then(function(){
     return [{
       id : 1,
-      name : "Schabowy",
+      name : "Schabowy_" + JSON.stringify(input),
       imageUrl : "http://www.todo.pl/image.jpg",
       flavorProfile: "spicy"
-    }];
+    },{
+      id : 2,
+      name : "Flaczki" + JSON.stringify(input),
+      imageUrl : "http://www.todo.pl/image2.jpg",
+      flavorProfile: "spicy"
+    }
+    ];
 
   });
 
