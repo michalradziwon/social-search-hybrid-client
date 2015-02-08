@@ -104,3 +104,22 @@ module.exports.fetchBeerDescription = function (beerId) {
     });
   return defer.promise;
 };
+
+
+
+module.exports.fetchDishDescription = function (dishId) {
+  var defer = Q.defer();
+  agent
+    .get("https://safe-depths-9845.herokuapp.com/api/v1/recipes/" + dishId)
+    .set("Accept", "application/json")
+    .end(function (res) {
+      console.log("fetchDishDescription resp:", res);
+      alert(res.body);
+      if(res.ok && res.body.beers&& res.body.beers[0]) {
+        defer.resolve(res.body.beers[0]);
+      } else {
+        defer.reject(res.body);
+      }
+    });
+  return defer.promise;
+};
