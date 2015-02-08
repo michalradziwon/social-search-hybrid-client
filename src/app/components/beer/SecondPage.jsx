@@ -32,7 +32,7 @@ var SecondPage = React.createClass({
   },
   render: function () {
     var self = this;
-    var flavourTypeButtons = new Set(["green_hoppy", "roasted_toasted", "citrus_zesty", "sour", "spicy", "fruity", "toffee_caramel"]).map(function (flavour) {
+    var flavourTypeButtons = new Set(["green_hoppy", "roasted_toasted", "citrus_zesty", /*"sour",*/ "spicy", "fruity", "toffee_caramel"]).map(function (flavour) {
       return (self.state.flavourTypes && self.state.flavourTypes.has(flavour))
         ? <RaisedButton label={flavour} primary={true}  onTouchTap={self.onFlavourTypeToggle(flavour)}/>
         : <FlatButton label={flavour} primary={true} onTouchTap={self.onFlavourTypeToggle(flavour)}/>;
