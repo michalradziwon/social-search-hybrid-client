@@ -74,7 +74,7 @@ var MainPage = React.createClass({
           console.log("recognized " + JSON.stringify(resp));
           if (resp.beers && resp.beers[0] && resp.beers[0].id) {
             // FIXME sorry ... refactor that later... the logic should be moved from view!!!
-            navigator.speech.startSpeaking("Image successfully recognized", {voice_name: 'Catherine'});
+            navigator.speech.startSpeaking("Image successfully recognized. This is " + resp.beers[0].name, {voice_name: 'Catherine'});
             BeerActions.beerSelected(resp.beers[0]);
           } else{
             navigator.speech.startSpeaking("Could not recognize the beverage", {voice_name: 'Catherine'});

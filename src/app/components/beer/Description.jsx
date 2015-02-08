@@ -11,7 +11,8 @@ var BeerImageUtil = require('./BeerImageUtil');
 var {
   IconButton,
   RaisedButton,
-  FlatButton
+  FlatButton,
+  Menu
   } = mui;
 
 var Description = React.createClass({
@@ -27,29 +28,42 @@ var Description = React.createClass({
   },
   render: function () {
     var desc;
-    if(this.state.description && this.state.description.descriptionType){
+    if (this.state.description && this.state.description.descriptionType) {
+
       var d = this.state.description;
-      desc = <div><img src={BeerImageUtil.getBeerImage(d)}/><ul>
-        <li>ABV: {d.abv}</li>
-        <li>Carbs: {d.carbs}</li>
-        <li>Energy: {d.energy}</li>
-        <li>Fat: {d.fat}</li>
-        <li>Contains gluten: {d.glutenFree}</li>
-        <li>Grains: {d.grains}</li>
-        <li>Protein: {d.protein}</li>
-        <li>Serving size: {d.servingSize}</li>
-        </ul>
+
+      var labelMenuItems = [
+        { payload: '1', text: 'ABV', data: d.abv, icon: 'home' },
+        { payload: '2', text: 'Carbs', data: d.carbs, icon: 'home' },
+        { payload: '3', text: 'Energy', data: d.energy, icon: 'home' },
+        //{ payload: '4', text: 'Fat', data: d.fat, icon: 'home' },
+        //{ payload: '5', text: 'Contains gluten', data: d.glutenFree, icon: 'home' },
+        { payload: '6', text: 'Grains', data: d.grains, icon: 'home' },
+        //{ payload: '7', text: 'Protein', data: d.protein, icon: 'home' },
+        { payload: '8', text: 'Serving size', data: d.servingSize, icon: 'home' }
+      ];
+
+
+
+      var topDivStyle = {"float":"left", "padding-left":"50px"};
+      desc = <div>
+        <div style={topDivStyle}><img src={BeerImageUtil.getBeerImage(d)}/></div>
+        <div><Menu menuItems={labelMenuItems} /></div>
       </div>
     }
 
-    return (
+  return (
       <div>
         <IconButton icon="image-navigate-before" onTouchTap={this.goToPrevious}/>
-      {desc}
+        <div className="component-doc">
+          <mui.Paper className="code-example">
+            {desc}
+          </mui.Paper>
+        </div>
       </div>
     );
-  },
-  goToPrevious: function () {
+},
+goToPrevious: function () {
     Router.transitionTo("/final"); // TODO later - move to action layer...
   },
   onDescriptionStoreChanged(newState) {
