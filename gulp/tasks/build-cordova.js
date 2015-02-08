@@ -86,8 +86,9 @@ gulp.task('cordova-run', function (done) {
 gulp.task('cordova-plugins-install', function (done) {
   runSequence(
     //'cordova-plugins-iflyspeech',
-    'cordova-plugins-vibration',
-    'cordova-plugins-device-motion'
+    //'cordova-plugins-vibration',
+    //'cordova-plugins-device-motion',
+    'cordova-plugins-camera'
     ,done);
 });
 
@@ -112,6 +113,16 @@ gulp.task('cordova-plugins-vibration', function (done) {
 
 gulp.task('cordova-plugins-device-motion', function (done) {
   exec('cordova plugin add org.apache.cordova.device-motion', {cwd: cordovaDir}, function (err, stdout, stderr) {
+    console.log(stdout);
+    console.log(stderr);
+    done(err);
+  });
+});
+
+
+
+gulp.task('cordova-plugins-camera', function (done) {
+  exec('cordova plugin add org.apache.cordova.camera', {cwd: cordovaDir}, function (err, stdout, stderr) {
     console.log(stdout);
     console.log(stderr);
     done(err);
