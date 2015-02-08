@@ -111,7 +111,7 @@ var FinalPage = React.createClass({
     var availableDishes = this.state.availableDishes ? (<Swipe key={seq2} className="swipper">
     {this.state.availableDishes.map(function (dish) {
         return <div key={dish.name}>
-          <b>{dish.name}</b>
+          <b><div className="beerName"><img src={dish.imageUrl}/>{dish.name}</div></b>
         </div>;
       }
     )}</Swipe>) : null;
