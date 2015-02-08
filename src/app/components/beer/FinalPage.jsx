@@ -103,7 +103,7 @@ var FinalPage = React.createClass({
     var availableBeers = this.state.availableBeers ?         (<Swipe key={seq1} className="swipper">
         {this.state.availableBeers.map(function (beer) {
           return <div key={beer.id}>
-            <b>{beer.name} <img src={getBeerImage(beer)}/></b>
+            <b><div className="beerName"><img src={getBeerImage(beer)}/>{beer.name}</div></b>
           </div>;
         })}
         </Swipe>) : null;
