@@ -53,3 +53,143 @@
 .beerName img{
   max-height: 100px;
 }
+
+// @import url(http://fonts.googleapis.com/css?family=Montserrat:400,700);
+
+html {
+  background:url(https://camo.githubusercontent.com/27d12d94213d98ebf59f212e9e239849e4530b27/68747470733a2f2f7261772e6769746875622e636f6d2f6d74756c6c792f676974736f6d652f6d61737465722f676974736f6d652e676966) no-repeat;
+                 background-size: cover;
+                 height:100%;
+                }
+
+.code-example {
+  background-color: @white;
+  margin-bottom: 32px;
+
+  .example-label {
+    .mui-font-style-menu;
+    display: inline-block;
+    text-transform: uppercase;
+    color: @min-black;
+    padding: @desktop-gutter-mini;
+    border-right: solid 1px @border-color;
+    border-bottom: solid 1px @border-color;
+    margin-bottom: 0;
+    border-radius: 0 0 2px 0;
+  }
+
+  .example-block,
+  .code-block {
+    padding: @desktop-gutter;
+  }
+
+  .code-block {
+    border-top: solid 1px @border-color;
+    border-radius: 0 0 2px 2px;
+  }
+}
+
+
+.component-info {
+
+  .mui-font-style-subhead-1;
+  width: 100%;
+
+  td {
+    padding: 16px 0;
+    vertical-align: top;
+  }
+
+  .component-info-name {
+    position: absolute;
+
+    .mui-font-weight-medium;
+  }
+
+  .component-info-type {
+    .mui-text-light-black;
+    padding-right: @desktop-gutter;
+  }
+
+  .component-info-header {
+    .mui-font-style-subhead-1;
+    padding-top: 0;
+  }
+
+  .component-info-desc {
+    width: 100%;
+    padding-top: 48px;
+    border-bottom: solid 1px @border-color;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  tr:last-child {
+    .component-info-desc {
+      border-bottom: none;
+    }
+  }
+
+  @media @device-medium {
+    .component-info-name {
+      position: inherit;
+      padding-right: @desktop-gutter;
+    }
+    .component-info-desc {
+      padding-top: 16px;
+    }
+  }
+
+  @media @device-large {
+    td {
+      padding: 32px 0;
+    }
+
+    .component-info-name {
+      min-width: 128px;
+    }
+
+    .component-info-desc {
+      padding-top: 32px;
+    }
+  }
+}
+
+element.style {
+}
+
+.mui-raised-button, .mui-raised-button * {
+  display: inline-block;
+  width: 88px;
+  height: 36px;
+}
+
+.my-btn {
+  float: right;
+	margin-left: 20px; 
+}
+
+// .mui-icon, mdfi_image_photo_camera, mui-ripple-circle-inner {
+//   height: 150px !important;
+//   width: 150px !important; 
+// }
+
+.mui-paper {
+    height: 50%;
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 32px;
+    margin-bottom: 64px;
+}
+
+@media @device-medium {
+  .clearfix();
+  
+  .paper-examples-group {
+    float: left;
+    width: 33%;
+  }
+}
+     

@@ -29,14 +29,27 @@ var MainPage = React.createClass({
   },
   render: function () {
     return (
+      <div className="component-doc">      
+      <mui.Paper className="code-example">
+      <div className="example-block">
+
+      <h2 className="mui-font-style-headline">How You want to pair your BEER?</h2>
       <div>
-        <div>
-        {this.state.pairingType == "Accentuate" ? <RaisedButton label="Accentuate" primary={true} /> : <FlatButton label="Accentuate" primary={true} onTouchTap={this.onTouch("Accentuate")}/> }
-          {this.state.pairingType == "ALL" ? <RaisedButton label="ALL" primary={true} /> : <FlatButton label="ALL" primary={true} onTouchTap={this.onTouch("ALL")}/> }
-          {this.state.pairingType == "Contrast" ? <RaisedButton label="Contrast" primary={true} /> : <FlatButton label="Contrast" primary={true} onTouchTap={this.onTouch("Contrast")}/> }
-        </div>
-        <IconButton icon="image-navigate-next" onTouchTap={this.onTouchNextPage} disabled ={!this.state.pairingType}/>
-        <IconButton icon="image-photo-camera" onTouchTap={this.onTakePhoto} />
+      <div>
+      {this.state.pairingType == "Accentuate" ? <RaisedButton label="Accentuate" primary={true} /> : <FlatButton label="Accentuate" primary={true} onTouchTap={this.onTouch("Accentuate")}/> }
+      {this.state.pairingType == "ALL" ? <RaisedButton label="ALL" primary={true} /> : <FlatButton label="ALL" primary={true} onTouchTap={this.onTouch("ALL")}/> }
+      {this.state.pairingType == "Contrast" ? <RaisedButton label="Contrast" primary={true} /> : <FlatButton label="Contrast" primary={true} onTouchTap={this.onTouch("Contrast")}/> }
+      </div>
+      <div className="code-block"> 
+      <IconButton icon="image-photo-camera" onTouchTap={this.onTakePhoto} />
+
+      <div className="my-btn">
+      <RaisedButton label="Next" onTouchTap={this.onTouchNextPage} disabled ={!this.state.pairingType}/>
+      </div>
+      </div>
+      </div>
+      </div>
+      </mui.Paper>
       </div>
     );
   },
