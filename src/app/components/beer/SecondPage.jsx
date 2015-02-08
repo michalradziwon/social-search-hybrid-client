@@ -62,13 +62,13 @@ var SecondPage = React.createClass({
       <div>Main ingredient {mainIngredientButtons}</div>
       <div>Additional ingredient {additionalIngredientButtons}</div>
       
-      </div>
 
       <div className="my-btn-left">      
       <IconButton icon="image-navigate-before" onTouchTap={this.goToPrevious}/>
       </div>
       <div className="my-btn-right">
       <IconButton icon="image-navigate-next" onTouchTap={this.goToNext} disabled={!this.isNextPageAllowed()}/>
+      </div>
       </div>
 
       </div>
