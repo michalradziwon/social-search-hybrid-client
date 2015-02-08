@@ -56,15 +56,16 @@ var FinalPage = React.createClass({
         </div>;
       }
     )}</Swipe>) : null;
-    return (
-      <div>
-      <div className="my-btn-left">      
-      <IconButton icon="image-navigate-before" onTouchTap={this.goToPrevious}/>      
+    var s = {position:"absolute"};
+    return (<div>
+      <div className="my-btn-left" style={s}>
+        <IconButton icon="image-navigate-before" onTouchTap={this.goToPrevious}/>
       </div>
-
+      <div>
         {availableBeers}
         {availableDishes}
       </div>
+    </div>
     );
   },
   goToPrevious: function () {
