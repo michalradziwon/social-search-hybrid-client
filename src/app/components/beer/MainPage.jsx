@@ -20,10 +20,10 @@ var MainPage = React.createClass({
   mixins: [
     Reflux.ListenerMixin
   ],
-  getInitialState:function(){
+  getInitialState: function () {
     return {};
   },
-  componentDidMount:function(){
+  componentDidMount: function () {
     this.listenTo(BeerStore, this.onBeerStoreChanged);
     BeerActions.notifyAll();
   },
@@ -46,35 +46,37 @@ var MainPage = React.createClass({
     }.bind(this);
   },
   onTouchNextPage: function () {
-    if(this.state.pairingType){
+    if (this.state.pairingType) {
       Router.transitionTo("/second"); // TODO later - move to action layer...
     }
   },
   onTakePhoto: function () {
     console.log("about to take a photo");
-    navigator.camera.getPicture( function(base64photo){
+    navigator.camera.getPicture(function (base64photo) {
       console.log("sending photo to backend" + (base64photo ? base64photo.length : 0));
 
-      navigator.speech.startSpeaking( "Sending photo to server", {voice_name: 'Catherine'} );
-      Q.delay(2000).then(function(){
-        BeerServiceClient.recognizeBeerImage(base64photo).then(function(resp){
+      navigator.speech.startSpeaking("Sending photo to server", {voice_name: 'Catherine'});
+      Q.delay(2000).then(function () {
+        BeerServiceClient.recognizeBeerImage(base64photo).then(function (resp) {
           console.log("recognized " + JSON.stringify(resp));
-          if(resp.beers && resp.beers[0] && resp.beers[0].id){
+          if (resp.beers && resp.beers[0] && resp.beers[0].id) {
             // FIXME sorry ... refactor that later... the logic should be moved from view!!!
-            navigator.speech.startSpeaking( "Image successfully recognized", {voice_name: 'Catherine'} );
+            navigator.speech.startSpeaking("Image successfully recognized", {voice_name: 'Catherine'});
             BeerActions.beerSelected(resp.beers[0]);
+          } else{
+            navigator.speech.startSpeaking("Could not recognize the beverage", {voice_name: 'Catherine'});
           }
         });
       });
 
-    }, function(err){
+    }, function (err) {
       console.log("ERROR while taking a photo" + err);
     }, {
-      destinationType : 0,
-      targetWidth : 700
-    } );
+      destinationType: 0,
+      targetWidth: 700
+    });
   },
-  onBeerStoreChanged(newState){
+  onBeerStoreChanged(newState) {
     this.setState(newState);
   }
 
