@@ -61,6 +61,23 @@ module.exports.fetchPairings = function (input) {
   return defer.promise;
 };
 
+module.exports.recognizeBeerImage = function (encode64image) {
+  var defer = Q.defer();
+  agent
+    .post("https://safe-depths-9845.herokuapp.com/api/v1/beerFromImage")
+    .set("Accept", "application/json")
+    .send({image:encode64image})
+    .end(function (res) {
+      console.log("resp:", res);
+      if (res.ok) {
+        defer.resolve(res.body);
+      } else {
+        defer.reject(res.body);
+      }
+    });
+  return defer.promise;
+};
+
 
 
 
