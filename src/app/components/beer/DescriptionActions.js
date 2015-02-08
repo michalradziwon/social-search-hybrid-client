@@ -16,5 +16,13 @@ DescriptionActions.openBeerDescription.preEmit = function (beerId) {
 };
 
 
+DescriptionActions.openDishDescription.preEmit = function (dishId) {
+  BeerServiceClient.fetchDishDescription(dishId).then(function(dishDesc){
+    dishDesc.descriptionType="dish"; // FIXME hack before the end of the hackhaton... ;)
+    DescriptionActions.populateDescription(dishDesc);
+  });
+};
+
+
 module.exports = DescriptionActions;
 
