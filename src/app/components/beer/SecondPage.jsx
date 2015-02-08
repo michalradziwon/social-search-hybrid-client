@@ -50,16 +50,30 @@ var SecondPage = React.createClass({
 
 
     return (
-      <div>
-        <div>
-          {flavourTypeButtons}
+      <div className="component-doc">      
+      <mui.Paper className="code-example">
+      <div className="example-block">
 
-          <div>Main ingredient {mainIngredientButtons}</div>
-          <div>Additional ingredient {additionalIngredientButtons}</div>
-        </div>
-        <IconButton icon="image-navigate-before" onTouchTap={this.goToPrevious}/>
-        <IconButton icon="image-navigate-next" onTouchTap={this.goToNext} disabled={!this.isNextPageAllowed()}/>
+      <h2 className="mui-font-style-headline">Choose your destiny... Beer?</h2>
+
+      {flavourTypeButtons}
+      <div className="code-block"> 
+
+      <div>Main ingredient {mainIngredientButtons}</div>
+      <div>Additional ingredient {additionalIngredientButtons}</div>
+      
       </div>
+
+      <div className="my-btn-left">      
+      <IconButton icon="image-navigate-before" onTouchTap={this.goToPrevious}/>
+      </div>
+      <div className="my-btn-right">
+      <IconButton icon="image-navigate-next" onTouchTap={this.goToNext} disabled={!this.isNextPageAllowed()}/>
+      </div>
+
+      </div>
+      </mui.Paper>
+      </div>      
     );
   },
   goToPrevious: function () {

@@ -43,7 +43,7 @@ var MainPage = React.createClass({
       <div className="code-block"> 
       <IconButton icon="image-photo-camera" onTouchTap={this.onTakePhoto} />
 
-      <div className="my-btn">
+      <div className="my-btn-right">
       <RaisedButton label="Next" onTouchTap={this.onTouchNextPage} disabled ={!this.state.pairingType}/>
       </div>
       </div>
