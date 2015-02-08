@@ -58,8 +58,12 @@ var MainPage = React.createClass({
       navigator.speech.startSpeaking( "Sending photo to server", {voice_name: 'Catherine'} );
       Q.delay(2000).then(function(){
         BeerServiceClient.recognizeBeerImage(base64photo).then(function(resp){
-          alert("recognized " + JSON.stringify(resp));
-          navigator.speech.startSpeaking( "Beer recognized", {voice_name: 'Catherine'} );
+          console.log("recognized " + JSON.stringify(resp));
+          if(resp.beers && resp.beers[0] && resp.beers[0].id){
+            // FIXME sorry ... refactor that later... the logic should be moved from view!!!
+            navigator.speech.startSpeaking( "Image successfully recognized", {voice_name: 'Catherine'} );
+            BeerActions.beerSelected(resp.beers[0]);
+          }
         });
       });
 

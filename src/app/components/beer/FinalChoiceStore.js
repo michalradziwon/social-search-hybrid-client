@@ -9,7 +9,7 @@ var FinalChoiceStore = Reflux.createStore({
     this.listenTo(BeerStore, this.onBeerStoreChanged);
   },
   state: {
-    availableDishes: [{name: "Dish one."}, {name: "Dish two"}, {name: "Dish three"}],
+    availableDishes: [],
     availableBeers: []
   },
   onBeerStoreChanged: function (beerStoreState) {
@@ -22,7 +22,12 @@ var FinalChoiceStore = Reflux.createStore({
         }
       );
 
-      FinalChoiceActions.fetchBeersByFlavourProfile(beerStoreState.flavourTypes.toArray());
+      if(beerStoreState.oneBeerSelectedOnly){
+        FinalChoiceActions.fetchBeersByFlavourProfileFinished([beerStoreState.oneBeerSelectedOnly]);
+      }else{
+        FinalChoiceActions.fetchBeersByFlavourProfile(beerStoreState.flavourTypes.toArray());
+      }
+
     }
   },
   onFetchBeersByFlavourProfileFinished: function (beerList) {

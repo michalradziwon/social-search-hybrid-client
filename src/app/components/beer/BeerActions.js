@@ -5,7 +5,8 @@ var BeerActions = Reflux.createActions([
   'notifyAll',
   'flavourTypeToggled',
   'mainIngredientToggled',
-  'additionalIngredientToggled'
+  'additionalIngredientToggled',
+  'beerSelected'
 ]);
 
 
