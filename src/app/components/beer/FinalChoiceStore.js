@@ -15,15 +15,13 @@ var FinalChoiceStore = Reflux.createStore({
   onBeerStoreChanged: function (beerStoreState) {
     if (beerStoreState && beerStoreState.pairingType && beerStoreState.flavourTypes && beerStoreState.flavourTypes.size > 0 && beerStoreState.mainIngredients && beerStoreState.mainIngredients.size > 0 && beerStoreState.additionalIngredients && beerStoreState.additionalIngredients.size > 0) {
       FinalChoiceActions.fetchPairings({
-          'pairingType': beerStoreState.pairingType,
+          'pairingType': beerStoreState.pairingType.toLowerCase(),
           'mains': beerStoreState.mainIngredients.toArray(),
           'additionals': beerStoreState.additionalIngredients.toArray(),
           'flavorProfiles': beerStoreState.flavourTypes.toArray()
         }
       );
 
-    }
-    if (beerStoreState.flavourTypes && beerStoreState.flavourTypes.size > 0) {
       FinalChoiceActions.fetchBeersByFlavourProfile(beerStoreState.flavourTypes.toArray());
     }
   },
