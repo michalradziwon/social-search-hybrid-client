@@ -85,7 +85,7 @@ gulp.task('cordova-run', function (done) {
 //
 gulp.task('cordova-plugins-install', function (done) {
   runSequence(
-    //'cordova-plugins-iflyspeech',
+    'cordova-plugins-iflyspeech',
     //'cordova-plugins-vibration',
     //'cordova-plugins-device-motion',
     'cordova-plugins-camera'

@@ -6,6 +6,9 @@ var Router = require('../../Router.jsx');
 var BeerStore = require('./BeerStore');
 var BeerActions = require('./BeerActions');
 
+var Q = require('q');
+var BeerServiceClient = require('../../remote/BeerServiceClient');
+
 
 var {
   IconButton,
@@ -33,6 +36,7 @@ var MainPage = React.createClass({
           {this.state.pairingType == "Contrast" ? <RaisedButton label="Contrast" primary={true} /> : <FlatButton label="Contrast" primary={true} onTouchTap={this.onTouch("Contrast")}/> }
         </div>
         <IconButton icon="image-navigate-next" onTouchTap={this.onTouchNextPage} disabled ={!this.state.pairingType}/>
+        <IconButton icon="image-photo-camera" onTouchTap={this.onTakePhoto} />
       </div>
     );
   },
@@ -45,6 +49,26 @@ var MainPage = React.createClass({
     if(this.state.pairingType){
       Router.transitionTo("/second"); // TODO later - move to action layer...
     }
+  },
+  onTakePhoto: function () {
+    console.log("about to take a photo");
+    navigator.camera.getPicture( function(base64photo){
+      console.log("sending photo to backend" + (base64photo ? base64photo.length : 0));
+
+      navigator.speech.startSpeaking( "Sending photo to server", {voice_name: 'Catherine'} );
+      Q.delay(2000).then(function(){
+        BeerServiceClient.recognizeBeerImage(base64photo).then(function(resp){
+          alert("recognized " + JSON.stringify(resp));
+          navigator.speech.startSpeaking( "Beer recognized", {voice_name: 'Catherine'} );
+        });
+      });
+
+    }, function(err){
+      console.log("ERROR while taking a photo" + err);
+    }, {
+      destinationType : 0,
+      targetWidth : 700
+    } );
   },
   onBeerStoreChanged(newState){
     this.setState(newState);
