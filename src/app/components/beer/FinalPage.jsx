@@ -52,7 +52,7 @@ var FinalPage = React.createClass({
     var availableDishes = this.state.availableDishes ? (<Swipe key={seq2} className="swipper">
     {this.state.availableDishes.map(function (dish) {
         return <div key={dish.name}>
-          <b><div className="beerName"><img src={dish.imageUrl}/>{dish.name}</div></b>
+          <b><div onTouchTap={self.onDishClicked(dish)} className="beerName"><img src={dish.imageUrl}/>{dish.name}</div></b>
         </div>;
       }
     )}</Swipe>) : null;
@@ -76,6 +76,11 @@ var FinalPage = React.createClass({
   onBeerClicked(beer){
     return function () {
       DescriptionActions.openBeerDescription(beer.id);
+    }.bind(this);
+  },
+  onDishClicked(dish){
+    return function () {
+      DescriptionActions.openDishDescription(dish.id);
     }.bind(this);
   }
 
