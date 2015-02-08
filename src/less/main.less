@@ -132,29 +132,7 @@ html {
     }
   }
 
-  @media @device-medium {
-    .component-info-name {
-      position: inherit;
-      padding-right: @desktop-gutter;
-    }
-    .component-info-desc {
-      padding-top: 16px;
-    }
-  }
 
-  @media @device-large {
-    td {
-      padding: 32px 0;
-    }
-
-    .component-info-name {
-      min-width: 128px;
-    }
-
-    .component-info-desc {
-      padding-top: 32px;
-    }
-  }
 }
 
 element.style {
@@ -162,8 +140,10 @@ element.style {
 
 .mui-raised-button, .mui-raised-button * {
   display: inline-block;
-  width: 88px;
-  height: 36px;
+  max-width: 155px;
+  max-height: 36px;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
 }
 
 .my-btn-right {
