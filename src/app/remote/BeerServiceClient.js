@@ -2,7 +2,6 @@ var agent = require('superagent');
 var Q = require('q');
 
 module.exports.fetchBeersByFlavourProfile = function (flavourProfileList) {
-
   var defer = Q.defer();
   agent
     .post("https://safe-depths-9845.herokuapp.com/api/v1/beersFlavorProfiles")
@@ -61,6 +60,7 @@ module.exports.fetchPairings = function (input) {
   return defer.promise;
 };
 
+
 module.exports.recognizeBeerImage = function (encode64image) {
   var defer = Q.defer();
   agent
@@ -81,9 +81,26 @@ module.exports.recognizeBeerImage = function (encode64image) {
 
 
 
-
-
 /**
  500
  https://api.foodily.com/v1/beerPairings?pairingType=BEER_ROULETTE_WINNERS&limit=50&fields=*(*)%2CrecipePairings(recipe(name%2Cid%2Chref)%2Cpairings(*))&expand=%20
  */
+
+
+
+module.exports.fetchBeerDescription = function (beerId) {
+  var defer = Q.defer();
+  agent
+    .post("https://safe-depths-9845.herokuapp.com/api/v1/beers")
+    .set("Accept", "application/json")
+    .send({id:beerId})
+    .end(function (res) {
+      console.log("fetchBeerDescription resp:", res);
+      if(res.ok && res.body.beers&& res.body.beers[0]) {
+        defer.resolve(res.body.beers[0]);
+      } else {
+        defer.reject(res.body);
+      }
+    });
+  return defer.promise;
+};
