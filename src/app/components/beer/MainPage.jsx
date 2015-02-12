@@ -68,9 +68,10 @@ var MainPage = React.createClass({
     navigator.camera.getPicture(function (base64photo) {
       console.log("sending photo to backend" + (base64photo ? base64photo.length : 0));
 
-      navigator.speech.startSpeaking("Sending photo to server", {voice_name: 'Catherine'});
-      Q.delay(2000).then(function () {
-        BeerServiceClient.recognizeBeerImage(base64photo).then(function (resp) {
+      // navigator.speech.startSpeaking("Sending photo to server", {voice_name: 'Catherine'});
+      var recognizePromise = BeerServiceClient.recognizeBeerImage(base64photo);
+      Q.delay(100).then(function () {// TODO remove the delay
+        recognizePromise.then(function (resp) {
           console.log("recognized " + JSON.stringify(resp));
           if (resp.beers && resp.beers[0] && resp.beers[0].id) {
             // FIXME sorry ... refactor that later... the logic should be moved from view!!!
