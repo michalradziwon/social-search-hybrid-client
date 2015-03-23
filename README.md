@@ -16,4 +16,11 @@ Running locally:
 gulp
 ```
 
+Demo of BeerRoulette application:
+https://www.youtube.com/watch?v=SYpApvlwnKM
+
+Link to the hackhaton page:
+https://www.hackerleague.org/hackathons/anheuser-busch-inbev-beer-garage-hackathon-london/hacks/beerroulette
+
+
 It will build the project and start web server on [localhost:3000](http://localhost:3000)

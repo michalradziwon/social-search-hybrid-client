@@ -68,9 +68,9 @@ var FinalPage = React.createClass({
     </div>
     );
   },
-  goToPrevious: function () {
-    Router.transitionTo("/second"); // TODO later - move to action layer...
-  },
+goToPrevious: function (abc) {
+  Router.transitionTo("/second"); // TODO later - move to action layer...
+},
   onBeerStoreChanged(newState) {
     //this.setState(newState);
   },
